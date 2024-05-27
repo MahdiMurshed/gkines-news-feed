@@ -9,7 +9,7 @@ import {
 
 import React from 'react'
 import { Avatar, AvatarFallback } from "../ui/avatar"
-import { Post, UserPost } from "@/app/types"
+import { UserPost } from "@/types"
 import Link from "next/link"
 
 type Props = {
@@ -26,7 +26,10 @@ const PostCard = ({ post }: Props) => {
                         <AvatarFallback>{post.userName.charAt(0)}</AvatarFallback>
                     </Avatar>
                     <CardTitle>
-                        <Link href={`/user/${post.userId}`} className="hover:underline underline-offset-4">
+                        <Link href={{
+                            query: { userId: post.userId },
+                        }}
+                            className="hover:underline underline-offset-4">
                             {post.userName}</Link>
                     </CardTitle>
                     <CardDescription>{`@${post.handle}`}</CardDescription>
